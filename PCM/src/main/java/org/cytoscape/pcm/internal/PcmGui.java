@@ -154,6 +154,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         cmcLabel = new javax.swing.JLabel();
         pewcc = new javax.swing.JCheckBox();
         cmc = new javax.swing.JCheckBox();
+        mcodeLabel = new javax.swing.JLabel();
+        mcode = new javax.swing.JCheckBox();
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -226,6 +228,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
 
         cmcLabel.setText("CMC");
 
+        mcodeLabel.setText("MCODE");
+
         javax.swing.GroupLayout mainUIPanelLayout = new javax.swing.GroupLayout(mainUIPanel);
         mainUIPanel.setLayout(mainUIPanelLayout);
         mainUIPanelLayout.setHorizontalGroup(
@@ -233,6 +237,9 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
             .addGroup(mainUIPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainUIPanelLayout.createSequentialGroup()
+                        .addComponent(mcodeLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(mainUIPanelLayout.createSequentialGroup()
                         .addComponent(cmcLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -248,7 +255,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pewcc)
-                                    .addComponent(cmc))))
+                                    .addComponent(cmc)
+                                    .addComponent(mcode))))
                         .addGap(28, 28, 28))))
         );
         mainUIPanelLayout.setVerticalGroup(
@@ -266,11 +274,15 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmcLabel)
                     .addComponent(cmc))
-                .addGap(23, 23, 23)
-                .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mcodeLabel)
+                    .addComponent(mcode))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -291,7 +303,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                 .addComponent(headingLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainUIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(mainPanel);
@@ -320,7 +332,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         
         if(network != null){
             networkview = _applicationManager.getCurrentNetworkView();
-            logicThread = new PcmLogic(this, network, networkview, pewcc.isSelected(), cmc.isSelected()); 
+            Parameters parameters = new Parameters(pewcc.isSelected(), cmc.isSelected(), mcode.isSelected());
+            logicThread = new PcmLogic(this, network, networkview, parameters); 
             logicThread.start();
             
         } else{
@@ -450,6 +463,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainUIPanel;
+    private javax.swing.JCheckBox mcode;
+    private javax.swing.JLabel mcodeLabel;
     protected javax.swing.JComboBox networkComboBox;
     private javax.swing.JLabel networkLabel;
     private javax.swing.JCheckBox pewcc;

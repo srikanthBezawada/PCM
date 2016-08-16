@@ -92,6 +92,9 @@ public class CyNetworkUtil {
 		}		
 	}
 	
+        public static String getNetworkName(CyNetwork network) {
+            return network.getRow(network).get(CyNetwork.NAME, String.class);
+        }
 	// --------------------------------------------------------------------
 	// Private methods
 	// --------------------------------------------------------------------

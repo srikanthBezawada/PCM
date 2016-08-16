@@ -19,8 +19,10 @@ import org.cytoscape.model.CyNetwork;
 import org.cytoscape.model.CyNode;
 import org.cytoscape.model.subnetwork.CyRootNetwork;
 import org.cytoscape.model.subnetwork.CySubNetwork;
+import org.cytoscape.pcm.internal.Parameters;
 import org.cytoscape.pcm.internal.PcmGui;
 import org.cytoscape.pcm.internal.logic.cmcAlgo.Cmc;
+import org.cytoscape.pcm.internal.logic.mcodeAlgo.Mcode;
 import org.cytoscape.pcm.internal.logic.pewccAlgo.Pewcc;
 import org.cytoscape.view.model.CyNetworkView;
 import org.jgrapht.UndirectedGraph;
@@ -34,21 +36,13 @@ public class PcmLogic extends Thread{
     private PcmGui panel;
     private CyNetwork network;
     private CyNetworkView networkView;
-    private boolean isPewcc;
-    private boolean isCmc;
-    private int count;
+    private Parameters parameters;
     
-    public PcmLogic(PcmGui panel, CyNetwork network, CyNetworkView networkView, boolean isPewcc, boolean isCmc) {
+    public PcmLogic(PcmGui panel, CyNetwork network, CyNetworkView networkView, Parameters parameters) {
         this.panel = panel;
         this.network = network;
         this.networkView = networkView;
-        count = 0; 
-        this.isPewcc = isPewcc;
-        if(isPewcc)
-            count++;
-        this.isCmc = isCmc;
-        if(isCmc) 
-            count++;
+        this.parameters = parameters;
     }
     
     public void run() {
@@ -57,21 +51,29 @@ public class PcmLogic extends Thread{
         long startTime = System.currentTimeMillis();
         
         Set<Complex> finalResult = new HashSet<Complex>();
-        // TODO change the below line to panel class if needed
-        ExecutorService service = Executors.newFixedThreadPool(count);
+        
+        final int cores = Runtime.getRuntime().availableProcessors();
+	final ExecutorService service = Executors.newFixedThreadPool(cores);
         List<Future<Set<Complex>>> allAlgosResult = new ArrayList<Future<Set<Complex>>>();
         
-        if(isCmc) {
-            //Future<Set<Complex>> cmcRes = service.submit(new Cmc(network));
-            Callable<Set<Complex>> callable = new Cmc(network);
-            Future<Set<Complex>> cmcRes = service.submit(callable);
-            allAlgosResult.add(cmcRes);
-        }
-        if(isPewcc) {
+        if(parameters.isPewcc) {
             //Future<Set<Complex>> pewccRes = service.submit(new Pewcc(network));
             Callable<Set<Complex>> callable = new Pewcc(network);
             Future<Set<Complex>> pewccRes = service.submit(callable);
             allAlgosResult.add(pewccRes);
+        }
+        
+        if(parameters.isCmc) {
+            //Future<Set<Complex>> cmcRes = service.submit(new Cmc(network));
+            Callable<Set<Complex>> callable = new Cmc(network);
+            Future<Set<Complex>> cmcRes = service.submit(callable);
+            allAlgosResult.add(cmcRes);
+        } 
+        
+        if(parameters.isMcode) {
+            Callable<Set<Complex>> callable = new Mcode(network);
+            Future<Set<Complex>> mcodeRes = service.submit(callable);
+            allAlgosResult.add(mcodeRes);
         }
         
         
