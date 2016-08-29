@@ -11,7 +11,7 @@ import org.cytoscape.model.SavePolicy;
 import org.cytoscape.model.subnetwork.CyRootNetwork;
 import org.cytoscape.model.subnetwork.CySubNetwork;
 import org.cytoscape.pcm.internal.logic.Complex;
-import org.cytoscape.pcm.internal.logic.algorithm.NodeCluster;
+import org.cytoscape.pcm.internal.logic.vault.NodeCluster;
 
 public class Mcode implements Callable<Set<Complex>>{
     CyNetwork network;

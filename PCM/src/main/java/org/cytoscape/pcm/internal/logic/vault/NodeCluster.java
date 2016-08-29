@@ -1,4 +1,4 @@
-package org.cytoscape.pcm.internal.logic.algorithm;
+package org.cytoscape.pcm.internal.logic.vault;
 
 
 import org.cytoscape.model.CyEdge;

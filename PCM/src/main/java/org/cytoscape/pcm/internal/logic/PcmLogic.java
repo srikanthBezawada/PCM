@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +20,9 @@ import org.cytoscape.model.subnetwork.CyRootNetwork;
 import org.cytoscape.model.subnetwork.CySubNetwork;
 import org.cytoscape.pcm.internal.Parameters;
 import org.cytoscape.pcm.internal.PcmGui;
+import org.cytoscape.pcm.internal.logic.cOneAlgo.ClOne;
 import org.cytoscape.pcm.internal.logic.cmcAlgo.Cmc;
+import org.cytoscape.pcm.internal.logic.mclAlgo.Mcl;
 import org.cytoscape.pcm.internal.logic.mcodeAlgo.Mcode;
 import org.cytoscape.pcm.internal.logic.pewccAlgo.Pewcc;
 import org.cytoscape.view.model.CyNetworkView;
@@ -76,6 +77,23 @@ public class PcmLogic extends Thread{
             allAlgosResult.add(mcodeRes);
         }
         
+        if(parameters.isMcl) {
+            Callable<Set<Complex>> callable = new Mcl(network);
+            Future<Set<Complex>> mclRes = service.submit(callable);
+            allAlgosResult.add(mclRes);
+        }
+        
+        if(parameters.isCone) {
+            try {
+                
+                Callable<Set<Complex>> callable = new ClOne(network);
+                Future<Set<Complex>> cOneRes = service.submit(callable);
+                allAlgosResult.add(cOneRes);
+            } catch (Exception ex) {
+                Logger.getLogger(PcmLogic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         
         for(Future<Set<Complex>> eachAlgo : allAlgosResult) {
             try {
@@ -88,6 +106,8 @@ public class PcmLogic extends Thread{
             }
         }
         
+        
+        
         service.shutdown();
         
         Set<Complex> finalResultMerged = merge(finalResult);
@@ -98,9 +118,15 @@ public class PcmLogic extends Thread{
             return;
         }
         
-        panel.resultsCalculated(finalResultMerged, network);
+        panel.resultsCalculated(finalResult, network);
         
-        
+        while (true) {
+            try {
+                    service.awaitTermination(1, TimeUnit.DAYS);
+                    break;
+            } catch (InterruptedException ignored) {
+            }
+        }
         
         
         
@@ -118,8 +144,9 @@ public class PcmLogic extends Thread{
     
     
     public Set<Complex> merge(Set<Complex> clusters) {
-        // TODO : change below
-        double overlapValue = 0.9;
+        
+        
+        double overlapValue = 0.8;
         Set<Complex> newClusters = new HashSet<Complex>();
         List<Complex> unmergedLists = new ArrayList<Complex>();
         unmergedLists.addAll(clusters);

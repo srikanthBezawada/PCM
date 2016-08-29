@@ -5,13 +5,6 @@ import java.awt.event.ActionEvent;
 import org.cytoscape.application.CyApplicationManager;
 import org.cytoscape.application.swing.AbstractCyAction;
 
-/**
- * // -------------------------------------------------------------------------
- * /** Menu option to open the PathLinker plugin
- *
- * @author Daniel Gil
- * @version Nov 4, 2015
- */
 public class HelpPcmAction
     extends AbstractCyAction
 {

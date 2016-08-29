@@ -31,7 +31,7 @@ public class Pewcc implements Callable<Set<Complex>>{
         List<CyNode> neighbourNodeList;
         List<CyEdge> neightbourEdgeList;
         int counter = 0;
-        // TODO : Default
+        
         double joinPValue = 0.5;
         
         Set<Complex> clusters = new HashSet<Complex>();

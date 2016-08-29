@@ -5,7 +5,7 @@ import org.cytoscape.work.TaskMonitor;
 
 
 import java.util.List;
-import org.cytoscape.pcm.internal.logic.algorithm.NodeCluster;
+import org.cytoscape.pcm.internal.logic.vault.NodeCluster;
 import org.cytoscape.pcm.internal.logic.utils.CyNetworkUtil;
 
 /**

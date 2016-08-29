@@ -9,7 +9,7 @@ import org.cytoscape.model.CyNode;
 
 import java.util.List;
 import java.util.Map;
-import org.cytoscape.pcm.internal.logic.algorithm.NodeCluster;
+import org.cytoscape.pcm.internal.logic.vault.NodeCluster;
 
 /**
  * * Copyright (c) 2004 Memorial Sloan-Kettering Cancer Center
