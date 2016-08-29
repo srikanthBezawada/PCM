@@ -81,6 +81,7 @@ public class Pewcc implements Callable<Set<Complex>>{
                 }
      
                 Complex C = new Complex(subNet);
+                // Removing very small complexes
                 if(subNet.getEdgeList().size() >= 3)
                 clusters.add(C);
                 

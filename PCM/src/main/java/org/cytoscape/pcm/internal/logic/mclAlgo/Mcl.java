@@ -54,6 +54,10 @@ public class Mcl implements Callable<Set<Complex>> {
             CyRootNetwork root = ((CySubNetwork)network).getRootNetwork();
             Complex C = new Complex(cluster.getSubNetwork(network, root));
             mclComplexes.add(C);
+            
+            // Removing very small complexes
+            if(C.getEdges().size() < 3)
+                mclComplexes.remove(C);
         }
         return mclComplexes;
    

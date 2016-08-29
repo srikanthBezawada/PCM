@@ -57,6 +57,11 @@ public class ClOne implements Callable<Set<Complex>>{
             CyRootNetwork root = ((CySubNetwork)network).getRootNetwork();
             Complex C = new Complex(root.addSubNetwork(nodes, edges));
             clusterOneComplexes.add(C);
+            
+            // Removing very small complexes
+            if(C.getEdges().size() < 3)
+                clusterOneComplexes.remove(C);
+            
             nodes.clear();
             edges.clear();
         }

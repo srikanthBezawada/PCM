@@ -50,6 +50,7 @@ public class Cmc implements Callable<Set<Complex>>{
                     requiredEdges.add(e);
                 }
             }
+            // Removing very small complexes
             if(requiredEdges.size() >= 3) {
                 CyNetwork subNet = root.addSubNetwork(requiredNodes, requiredEdges);
                 cmcComplexes.add(new Complex(subNet));
