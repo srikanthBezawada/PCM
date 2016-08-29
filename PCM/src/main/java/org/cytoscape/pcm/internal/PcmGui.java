@@ -400,7 +400,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         mcl.setEnabled(false);
         cOne.setEnabled(false);
         
-        statusLabel.setText("PMC is running ......");
+        statusLabel.setText("PCM is running ......");
     }
     
     public void endComputation(){
