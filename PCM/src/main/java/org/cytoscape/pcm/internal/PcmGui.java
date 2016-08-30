@@ -375,8 +375,27 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         
         if(network != null){
             networkview = _applicationManager.getCurrentNetworkView();
-            Double mergeThreshold = overlapValueValidate(overlapThresholdTf);
-            int clusterThreshold = clusterThresholdValidate(clusterThresholdTf);
+            Double mergeThreshold;
+            Integer clusterThreshold;
+            mergeThreshold = overlapValueValidate(overlapThresholdTf);
+            if(mergeThreshold == null) {
+                JOptionPane.showMessageDialog(null, "Not a valid merge threshold ", "Try a different input ", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if(mergeThreshold == 0.0) {
+                JOptionPane.showMessageDialog(null, "Overlap Threshold should be greater than zero ! ", "Not A valid Overlap Threshold ", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            clusterThreshold = clusterThresholdValidate(clusterThresholdTf);
+            if(clusterThreshold == null) {
+                JOptionPane.showMessageDialog(null, "Not a valid cluster threshold ", "Try a different input ", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if((pewcc.isSelected() || cmc.isSelected() || mcode.isSelected() ||  mcl.isSelected() || cOne.isSelected()) == false){
+                JOptionPane.showMessageDialog(null, "Select atleast one method to run ", "Try a different input ", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             Parameters parameters = new Parameters(mergeThreshold, clusterThreshold, pewcc.isSelected(), cmc.isSelected(), mcode.isSelected(), mcl.isSelected(), cOne.isSelected());
             logicThread = new PcmLogic(this, network, networkview, parameters); 
             logicThread.start();

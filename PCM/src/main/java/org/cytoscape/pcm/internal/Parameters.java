@@ -11,6 +11,8 @@ public class Parameters {
     
     
     public Parameters(double mergeThreshold, int clusterThreshold,boolean isPewcc, boolean isCmc, boolean isMcode, boolean isMcl, boolean isCone) {
+        this.mergeThreshold = mergeThreshold;
+        this.clusterThreshold = clusterThreshold;
         this.isCmc = isCmc;
         this.isPewcc = isPewcc;
         this.isMcode = isMcode;
