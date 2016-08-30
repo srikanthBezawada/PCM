@@ -110,7 +110,7 @@ public class PcmLogic extends Thread{
         
         service.shutdown();
         
-        Set<Complex> finalResultMerged = Merger.merge(finalResult, network);
+        Set<Complex> finalResultMerged = Merger.merge(finalResult, network, parameters.mergeThreshold, parameters.clusterThreshold);
         if(finalResultMerged == null) {
             return;
         }
@@ -118,7 +118,7 @@ public class PcmLogic extends Thread{
             return;
         }
         
-        panel.resultsCalculated(finalResult, network);
+        panel.resultsCalculated(finalResultMerged, network);
         
         while (true) {
             try {

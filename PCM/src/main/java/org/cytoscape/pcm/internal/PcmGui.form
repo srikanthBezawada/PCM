@@ -27,7 +27,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="569" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="630" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -104,26 +104,22 @@
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="cmcLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="networkLabel" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="statusPanel" alignment="1" max="32767" attributes="0"/>
                                       <Component id="startB" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="networkLabel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                                              <Component id="pewccLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="86" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="thresholdLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="109" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="networkComboBox" min="-2" pref="132" max="-2" attributes="0"/>
-                                              <Component id="pewcc" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cmc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="mcode" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="mcl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cOne" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="clusterThresholdTf" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="overlapThresholdTf" alignment="0" pref="36" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -131,9 +127,27 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cOneLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="mclLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="mcodeLabel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="cOneLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cOne" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="clustersThresholdLabel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="mcodeLabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmcLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pewccLabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mclLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="mcode" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pewcc" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmc" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mcl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -149,35 +163,56 @@
                               <Component id="networkLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="networkComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                                  <Component id="overlapThresholdTf" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="thresholdLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="pewccLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="pewcc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clustersThresholdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clusterThresholdTf" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="23" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cmcLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmc" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmcLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="pewccLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="mcodeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mcode" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="mclLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mcl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cOneLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cOne" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                                  <Component id="startB" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="pewcc" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="mcodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="mcode" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="mclLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="mcl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cOneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cOne" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
-                          <Component id="startB" min="-2" pref="54" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="statusPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -310,6 +345,26 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="cOne">
+                </Component>
+                <Component class="javax.swing.JLabel" name="thresholdLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Overlap Threshold"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="overlapThresholdTf">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="0.8"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="clustersThresholdLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Min. clusters in a component"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="clusterThresholdTf">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="3"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

@@ -17,8 +17,7 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class Merger {
     
-    public static Set<Complex> merge(Set<Complex> clusters, CyNetwork network) {
-        double overlapValue = 0.8;
+    public static Set<Complex> merge(Set<Complex> clusters, CyNetwork network, double overlapValue, int minClustersInComponent) {
         Set<Complex> newClusters = new HashSet<Complex>();
         List<Complex> unmergedLists = new ArrayList<Complex>();
         unmergedLists.addAll(clusters);
@@ -52,8 +51,11 @@ public class Merger {
         ConnectivityInspector<Complex, DefaultEdge> inspector = new ConnectivityInspector<Complex, DefaultEdge>(g);
         List<Set<Complex>> connComponents = inspector.connectedSets();
         for(Set<Complex> component : connComponents) {
-            if(component.isEmpty() == false)
-            newClusters.add(mergeComponent(component, network));
+            if(component.isEmpty() == false){
+                if(component.size() >= minClustersInComponent) {
+                    newClusters.add(mergeComponent(component, network));
+                }
+            }
         }
         
         return newClusters;
@@ -75,7 +77,7 @@ public class Merger {
             return null;
         }
         for(Complex C : component) {
-            if(component.size() == 1) {
+            if(component.size() == 1) {// handled already
                 return C;
             } else{
                 nodesUnion.addAll(C.getNodes());
