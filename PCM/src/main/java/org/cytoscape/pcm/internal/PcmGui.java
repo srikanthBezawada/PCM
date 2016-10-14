@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -295,9 +296,9 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                         .addGap(18, 18, 18)
                         .addComponent(thresholdLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clustersThresholdLabel)
-                    .addComponent(clusterThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clusterThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clustersThresholdLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmcLabel)
@@ -433,12 +434,14 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         return clusterThreshold;
     }
     
-    public void resultsCalculated(Set<Complex> finalResultMerged, CyNetwork network) {
+    public void resultsCalculated(Collection<Complex> finalResultMerged, CyNetwork network) {
         
-        if(finalResultMerged.isEmpty())
+        if(finalResultMerged.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No results found for given parameters ", "No results ", JOptionPane.WARNING_MESSAGE);
             return;
+        }
         
-        CytoscapeResultViewerPanel resultsPanel = resultsPanel = new CytoscapeResultViewerPanel(_cyactivator, network);
+        CytoscapeResultViewerPanel resultsPanel = new CytoscapeResultViewerPanel(_cyactivator, network);
         resultsPanel.setResult(new ArrayList<Complex>(finalResultMerged));
         resultsPanel.addToCytoscapeResultPanel();
     }

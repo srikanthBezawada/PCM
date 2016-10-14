@@ -1,8 +1,6 @@
 package org.cytoscape.pcm.internal.logic;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -13,11 +11,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.cytoscape.model.CyEdge;
 import org.cytoscape.model.CyNetwork;
-import org.cytoscape.model.CyNode;
-import org.cytoscape.model.subnetwork.CyRootNetwork;
-import org.cytoscape.model.subnetwork.CySubNetwork;
 import org.cytoscape.pcm.internal.Parameters;
 import org.cytoscape.pcm.internal.PcmGui;
 import org.cytoscape.pcm.internal.logic.cOneAlgo.ClOne;
@@ -26,10 +20,6 @@ import org.cytoscape.pcm.internal.logic.mclAlgo.Mcl;
 import org.cytoscape.pcm.internal.logic.mcodeAlgo.Mcode;
 import org.cytoscape.pcm.internal.logic.pewccAlgo.Pewcc;
 import org.cytoscape.view.model.CyNetworkView;
-import org.jgrapht.UndirectedGraph;
-import org.jgrapht.alg.ConnectivityInspector;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.SimpleGraph;
 
 public class PcmLogic extends Thread{
     private boolean stop;
@@ -51,7 +41,7 @@ public class PcmLogic extends Thread{
         panel.startComputation();
         long startTime = System.currentTimeMillis();
         
-        Set<Complex> finalResult = new HashSet<Complex>();
+        List<Complex> finalResult = new ArrayList<Complex>();
         
         final int cores = Runtime.getRuntime().availableProcessors();
 	final ExecutorService service = Executors.newFixedThreadPool(cores);
