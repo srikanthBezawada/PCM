@@ -17,7 +17,7 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class Merger {
     
-    public static Set<Complex> merge(List<Complex> clusters, CyNetwork network, double overlapValue, int minClustersInComponent) {
+    public static Set<Complex> merge(List<Complex> clusters, CyNetwork network, double overlapValue, int similarityType, int minClustersInComponent) {
         Set<Complex> newClusters = new HashSet<Complex>();
         
         UndirectedGraph<ComplexWrapper, DefaultEdge> g = new SimpleGraph<ComplexWrapper, DefaultEdge>(DefaultEdge.class);
@@ -46,7 +46,7 @@ public class Merger {
                     continue;
                 }
                 
-                if(matchCoefficient(C1.getComplex(), C2.getComplex()) >= overlapValue) {
+                if(coefficient(C1.getComplex(), C2.getComplex(), similarityType) >= overlapValue) {
                     g.addEdge(C1, C2);
                 }
             }
@@ -68,12 +68,82 @@ public class Merger {
     }
         
     
+    public static double coefficient(Complex C1, Complex C2, int i) {
+        switch (i) {
+            case 0:
+            {
+                double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+                double matchCoeff = (inter * inter)/(C1.getNodes().size() * C2.getNodes().size());
+                
+                return matchCoeff;
+            }
+            case 1:
+            {
+                double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+                double smallerComplexsize;
+                if(C1.getNodes().size() > C2.getNodes().size()) {
+                    smallerComplexsize = C2.getNodes().size();
+                } else{
+                    smallerComplexsize = C1.getNodes().size();
+                }
+                
+                return inter/smallerComplexsize ;
+                
+                
+            }
+            case 2:
+            {
+                double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+                double union = union(C1.getNodes(), C2.getNodes()).size();
+                
+                return inter/union;
+                
+            }
+            case 3:
+            {
+                double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+                return (2*inter)/(C1.getNodes().size() + C2.getNodes().size());
+                
+            }
+        }
+        
+        return 0.0;//Noone was here
+    }
+    
+    
     public static double matchCoefficient(Complex C1, Complex C2) {
         double inter = intersection(C1.getNodes(), C2.getNodes()).size();
         double matchCoeff = (inter * inter)/(C1.getNodes().size() * C2.getNodes().size());
     
         return matchCoeff;
     }
+    
+    public static double simpsonCoefficient(Complex C1, Complex C2) {
+        double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+        double smallerComplexsize;
+        if(C1.getNodes().size() > C2.getNodes().size()) {
+            smallerComplexsize = C2.getNodes().size();
+        } else{
+            smallerComplexsize = C1.getNodes().size();
+        }
+        
+        return inter/smallerComplexsize ;
+    }
+    
+    
+    public static double jaccardSimilarity(Complex C1, Complex C2) {
+        double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+        double union = union(C1.getNodes(), C2.getNodes()).size();
+        
+        return inter/union;
+    }
+    
+    public static double diceSimilarity(Complex C1, Complex C2) {
+        double inter = intersection(C1.getNodes(), C2.getNodes()).size();
+        return (2*inter)/(C1.getNodes().size() + C2.getNodes().size());
+    }
+    
+    
     
     public static Complex mergeComponent(Set<ComplexWrapper> component, CyNetwork network) {
         Set<CyNode> nodesUnion = new HashSet<CyNode>();
@@ -101,4 +171,16 @@ public class Merger {
         }
         return tmp;    
     }
+    
+    public static Set<CyNode> union(List<CyNode> setA, List<CyNode> setB) {
+        Set<CyNode> tmp = new HashSet<CyNode>();
+        for (CyNode x : setA) {
+            tmp.add(x);
+        }
+        for (CyNode x : setB) {
+            tmp.add(x);
+        }
+        return tmp;    
+    }
+    
 }

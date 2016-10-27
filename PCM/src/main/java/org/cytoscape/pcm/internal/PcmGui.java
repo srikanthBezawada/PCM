@@ -125,6 +125,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jScrollPane1 = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
         headingLabel = new javax.swing.JLabel();
@@ -150,6 +151,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         overlapThresholdTf = new javax.swing.JTextField();
         clustersThresholdLabel = new javax.swing.JLabel();
         clusterThresholdTf = new javax.swing.JTextField();
+        similarityLabel = new javax.swing.JLabel();
+        similarityComboBox = new javax.swing.JComboBox();
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -236,6 +239,10 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
 
         clusterThresholdTf.setText("3");
 
+        similarityLabel.setText("Similarity measure");
+
+        similarityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Match coefficient", "Simpson coefficient", "Jaccard similarity", "Dice similarity" }));
+
         javax.swing.GroupLayout mainUIPanelLayout = new javax.swing.GroupLayout(mainUIPanel);
         mainUIPanel.setLayout(mainUIPanelLayout);
         mainUIPanelLayout.setHorizontalGroup(
@@ -253,31 +260,38 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                             .addGroup(mainUIPanelLayout.createSequentialGroup()
                                 .addComponent(thresholdLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(networkComboBox, 0, 132, Short.MAX_VALUE)
                                     .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(clusterThresholdTf, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(overlapThresholdTf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))))
+                                        .addComponent(overlapThresholdTf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                                    .addComponent(similarityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(28, 28, 28))
                     .addGroup(mainUIPanelLayout.createSequentialGroup()
                         .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainUIPanelLayout.createSequentialGroup()
-                                .addComponent(cOneLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(cOne))
+                            .addComponent(similarityLabel)
                             .addComponent(clustersThresholdLabel)
-                            .addGroup(mainUIPanelLayout.createSequentialGroup()
-                                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mcodeLabel)
+                            .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainUIPanelLayout.createSequentialGroup()
                                     .addComponent(cmcLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmc))
+                                .addGroup(mainUIPanelLayout.createSequentialGroup()
                                     .addComponent(pewccLabel)
-                                    .addComponent(mclLabel))
-                                .addGap(37, 37, 37)
-                                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mcode)
-                                    .addComponent(pewcc)
-                                    .addComponent(cmc)
-                                    .addComponent(mcl))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pewcc))
+                                .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                    .addComponent(mcodeLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(mcode))
+                                .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                    .addComponent(mclLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(mcl))
+                                .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                    .addComponent(cOneLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cOne))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         mainUIPanelLayout.setVerticalGroup(
@@ -287,45 +301,51 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(networkLabel)
                     .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainUIPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(overlapThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(mainUIPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(thresholdLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clusterThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clustersThresholdLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmcLabel)
-                    .addComponent(cmc))
                 .addGap(18, 18, 18)
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainUIPanelLayout.createSequentialGroup()
-                        .addComponent(pewccLabel)
-                        .addGap(18, 18, 18)
                         .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mcodeLabel)
-                            .addComponent(mcode))
+                            .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(overlapThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(similarityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                .addComponent(thresholdLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(similarityLabel)))
                         .addGap(18, 18, 18)
+                        .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clustersThresholdLabel)
+                            .addComponent(clusterThresholdTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                .addComponent(cmcLabel)
+                                .addGap(25, 25, 25)
+                                .addComponent(pewccLabel))
+                            .addGroup(mainUIPanelLayout.createSequentialGroup()
+                                .addComponent(cmc)
+                                .addGap(18, 18, 18)
+                                .addComponent(pewcc)))
+                        .addGap(21, 21, 21)
                         .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mclLabel)
-                            .addComponent(mcl))
-                        .addGap(18, 18, 18)
-                        .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cOneLabel)
-                            .addComponent(cOne))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mcodeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(mcode, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(25, 25, 25)
+                        .addComponent(mclLabel))
                     .addGroup(mainUIPanelLayout.createSequentialGroup()
-                        .addComponent(pewcc)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mcl)))
+                .addGap(25, 25, 25)
+                .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cOneLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cOne, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(33, 33, 33)
+                .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -397,7 +417,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
                 return;
             }
             
-            Parameters parameters = new Parameters(mergeThreshold, clusterThreshold, pewcc.isSelected(), cmc.isSelected(), mcode.isSelected(), mcl.isSelected(), cOne.isSelected());
+            Parameters parameters = new Parameters(mergeThreshold, similarityComboBox.getSelectedIndex(),clusterThreshold, pewcc.isSelected(), cmc.isSelected(), mcode.isSelected(), mcl.isSelected(), cOne.isSelected());
             logicThread = new PcmLogic(this, network, networkview, parameters); 
             logicThread.start();
             
@@ -460,6 +480,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         //if(pewccapp.getPEWCClogic().isAlive()) {
         stopcalculus(null);
         networkComboBox.setEnabled(true);
+        similarityComboBox.setEnabled(true);
         clusterThresholdTf.setEnabled(true);
         overlapThresholdTf.setEnabled(true);
                 
@@ -484,6 +505,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         statusBar.setIndeterminate(true);
         statusBar.setVisible(true);
         networkComboBox.setEnabled(false);
+        similarityComboBox.setEnabled(false);
         clusterThresholdTf.setEnabled(false);
         overlapThresholdTf.setEnabled(false);
         
@@ -501,6 +523,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
         statusLabel.setText("<html>Completed! Check Results Panel <html>");
         startB.setEnabled(true);
         networkComboBox.setEnabled(true);
+        similarityComboBox.setEnabled(true);
         clusterThresholdTf.setEnabled(true);
         overlapThresholdTf.setEnabled(true);
         
@@ -550,7 +573,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
     }
     
     
-    public void addItemListener(final ItemListener newListener) {
+    public void addItemListener(final ItemListener newListener) { // huh ?
         networkComboBox.addItemListener(newListener);
     }
     
@@ -573,6 +596,7 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
     private javax.swing.JLabel clustersThresholdLabel;
     private javax.swing.JCheckBox cmc;
     private javax.swing.JLabel cmcLabel;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
@@ -586,6 +610,8 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
     private javax.swing.JTextField overlapThresholdTf;
     private javax.swing.JCheckBox pewcc;
     private javax.swing.JLabel pewccLabel;
+    private javax.swing.JComboBox<String> similarityComboBox;
+    private javax.swing.JLabel similarityLabel;
     private javax.swing.JButton startB;
     private javax.swing.JProgressBar statusBar;
     private javax.swing.JLabel statusLabel;

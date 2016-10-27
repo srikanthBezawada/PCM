@@ -100,7 +100,7 @@ public class PcmLogic extends Thread{
         
         service.shutdown();
         
-        Set<Complex> finalResultMerged = Merger.merge(finalResult, network, parameters.mergeThreshold, parameters.clusterThreshold);
+        Set<Complex> finalResultMerged = Merger.merge(finalResult, network, parameters.mergeThreshold, parameters.similarityType, parameters.clusterThreshold);
         if(finalResultMerged == null) {
             return;
         }
