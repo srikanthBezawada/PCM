@@ -651,8 +651,43 @@ public class PcmGui extends javax.swing.JPanel implements CytoPanelComponent, Ne
      * Deactivates and hides the control panel.
      */
     public void deactivate() {
+        
+        if(logicThread != null){
+            logicThread.end();
+        }
+        //if(pewccapp.getPEWCClogic().isAlive()) {
+        stopcalculus(null);
+        statusBar.setIndeterminate(false);
+        networkComboBox.setEnabled(true);
+        similarityComboBox.setEnabled(true);
+        clusterThresholdTf.setEnabled(true);
+        overlapThresholdTf.setEnabled(true);
+        
+        
+        startB.setEnabled(true);
+        stopButton.setEnabled(false);
+        
+        
+        pewcc.setEnabled(true);
+        cmc.setEnabled(true);
+        mcode.setEnabled(true);
+        mcl.setEnabled(true);
+        cOne.setEnabled(true);
+        
+        clusterThresholdTf.setText("3");
+        overlapThresholdTf.setText("0.8");
+        similarityComboBox.setSelectedIndex(0);
+        
+        pewcc.setSelected(false);
+        cmc.setSelected(false);
+        mcode.setSelected(false);
+        mcl.setSelected(false);
+        cOne.setSelected(false);
+
+        
         _cyactivator.unregisterService(this, NetworkAddedListener.class);
         _cyactivator.unregisterService(this, NetworkDestroyedListener.class);
+        _cyactivator.unregisterService(this, CytoPanelComponent.class);
     }
     
     @Override

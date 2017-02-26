@@ -9,6 +9,7 @@ import org.cytoscape.model.CyNetworkManager;
 import org.cytoscape.pcm.internal.PcmGui.PanelState;
 import org.cytoscape.service.util.AbstractCyActivator;
 import org.cytoscape.service.util.CyServiceRegistrar;
+import org.cytoscape.util.swing.OpenBrowser;
 import org.cytoscape.view.model.CyNetworkViewFactory;
 import org.cytoscape.view.model.CyNetworkViewManager;
 import org.osgi.framework.BundleContext;
@@ -38,9 +39,12 @@ public class CytoscapeAppActivator extends AbstractCyActivator {
         CySwingApplication cySwingApp = getService(context, CySwingApplication.class);
         registerService(context, panel, CytoPanelComponent.class, new Properties());
         
+        
+        OpenBrowser openBrowser = getService(OpenBrowser.class);
+        
         OpenPcmGuiAction oplaction = new OpenPcmGuiAction(panel, cyApplicationManager);
         ClosePcmGuiAction cplaction = new ClosePcmGuiAction(panel, cyApplicationManager);
-        HelpPcmAction helpAction = new HelpPcmAction(cyApplicationManager);
+        HelpPcmAction helpAction = new HelpPcmAction(cyApplicationManager, openBrowser);
         
         registerAllServices(context, oplaction, new Properties());
         registerAllServices(context, helpAction, new Properties());
